@@ -4,9 +4,14 @@ import { NumericKeys } from '../enums/numeric-keys.enum';
 import { OperatorKeys } from '../enums/operator-keys.enum';
 import { ICalculatorModel } from '../interfaces/calculator-model.interface';
 
-export class StandardCalculatorModel implements ICalculatorModel {
+export class RoundingCalculator implements ICalculatorModel {
 
   private _buffer: string = '';
+  private _nrDecimals: number = 0;
+
+  constructor(nrDecimals: number) {
+    this._nrDecimals = nrDecimals;
+  }
 
   public pressNumericKey(key: NumericKeys): void {
     this._buffer += key;
@@ -26,6 +31,7 @@ export class StandardCalculatorModel implements ICalculatorModel {
         break;
       case ActionKeys.EQUALS:
         // eslint-disable-next-line no-eval
+        let output = (<number> eval(this._buffer));
         this._buffer = (<number> eval(this._buffer)).toString();
         break;
       default:

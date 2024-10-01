@@ -1,16 +1,18 @@
 
-import { CalculatorModel } from './calculator.model';
+import { StandardCalculatorModel } from './calculator.model';
 import { ICalculatorModel } from '../interfaces/calculator-model.interface';
 import { NumericKeys } from '../enums/numeric-keys.enum';
 import { OperatorKeys } from '../enums/operator-keys.enum';
 import { ActionKeys } from '../enums/action-keys.enum';
+import { StandardCalculatorModelFactory } from './StandardCalculatorModelFactory.model';
 
 describe('CalculatorModel', (): void => {
 
   let calculator: ICalculatorModel;
 
   beforeEach((): void => {
-    calculator = new CalculatorModel();
+    let calculatorFactory = new StandardCalculatorModelFactory();
+    calculator = new StandardCalculatorModel();
   });
 
   it('should contain a CalculatorModel class that implements ICalculatorModel', (): void => {
